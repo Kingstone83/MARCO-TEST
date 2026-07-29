@@ -13,7 +13,7 @@ const navItems = [
   ["Metodo Biodinamica", "pages/metodo-biodinamica.html"],
   ["Analisi", "pages/analisi.html"],
   ["Plantari su misura", "pages/plantari-su-misura.html"],
-  ["Foot Map", "foot-map/"],
+  ["Foot Map", "foot-map/index.html"],
   ["Patologie", "pages/patologie-disturbi.html"],
   ["Tecnologia", "pages/tecnologia.html"],
   ["Chi siamo", "pages/chi-siamo.html"],
@@ -229,7 +229,7 @@ function footer(current) {
           <h4>Servizi</h4>
           <a href="${relative("pages/analisi.html", current)}">Analisi</a>
           <a href="${relative("pages/plantari-su-misura.html", current)}">Plantari su misura</a>
-          <a href="${relative("foot-map/", current)}">Foot Map</a>
+          <a href="${relative("foot-map/index.html", current)}">Foot Map</a>
         </div>
         <div>
           <h4>Contatti</h4>
@@ -300,10 +300,10 @@ function renderHome() {
             <h2>Dove senti dolore? Troviamo la causa, insieme.</h2>
             <p>Foot Map ti aiuta a orientarti tra le principali zone di dolore: tallone, arco plantare, avampiede, alluce, dita, tendine d'Achille, lato interno e lato esterno.</p>
             <p>Non sostituisce una valutazione professionale, ma ti aiuta a capire da dove partire.</p>
-            <a class="cta" href="foot-map/">Apri Foot Map ${icon.arrow}</a>
+            <a class="cta" href="foot-map/index.html">Apri Foot Map ${icon.arrow}</a>
           </div>
           <div class="pain-card-grid">
-            ${Object.entries(painProfiles).slice(0, 8).map(([key, data]) => `<a href="foot-map/" class="pain-zone-card"><span>${data[0]}</span>${icon.arrow}</a>`).join("")}
+            ${Object.entries(painProfiles).slice(0, 8).map(([key, data]) => `<a href="foot-map/index.html" class="pain-zone-card"><span>${data[0]}</span>${icon.arrow}</a>`).join("")}
           </div>
         </div>
       </section>
