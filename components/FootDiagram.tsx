@@ -2,6 +2,8 @@
 
 import { painAreas } from "@/data/painAreas";
 
+const assetBasePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 type Props = {
   selected: string[];
   onToggle: (id: string) => void;
@@ -12,7 +14,7 @@ export function FootDiagram({ selected, onToggle }: Props) {
     <div className="foot-card" aria-label="Mappa interattiva delle aree del piede">
       <img
         className="foot-map-image"
-        src="/foot-pain-map-real.png"
+        src={`${assetBasePath}/foot-pain-map-real.png`}
         alt="Piede visto da pianta e dorso con punti selezionabili per indicare il dolore"
       />
       {painAreas.map((area) => {
