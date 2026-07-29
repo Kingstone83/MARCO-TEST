@@ -1,6 +1,6 @@
-# Foot Pain Identifier
+# Foot Map
 
-MVP responsive in Next.js + TypeScript, ispirato al mockup fornito.
+Mappa interattiva in Next.js + TypeScript per orientare l'utente nella lettura del dolore del piede.
 
 ## Avvio
 
@@ -14,11 +14,12 @@ Apri `http://localhost:3000`.
 ## Funzioni
 
 - selezione multipla delle aree dolorose
-- due viste del piede
-- intensità 0–10
+- mappa visiva del piede
+- intensità 0-10
 - durata del dolore
 - motore di regole locale
-- risultati orientativi e disclaimer medico
+- risultati orientativi con fonti informative podologiche
+- disclaimer medico
 - layout responsive e accessibile da tastiera
 
 ## Nota clinica

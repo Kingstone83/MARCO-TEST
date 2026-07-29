@@ -35,8 +35,10 @@ export function AssessmentApp() {
   return (
     <main>
       <header className="header">
-        <div className="brand"><span className="brand-mark">B</span><div><strong>BIODINAMICA</strong><small>PIEDE E MOVIMENTO</small></div></div>
-        <div className="hero-title"><h1>FOOT <span>PAIN</span> IDENTIFIER</h1><p>Indica dove senti dolore per aiutarci a comprenderne meglio le possibili cause.</p></div>
+        <div className="brand">
+          <img className="brand-logo" src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/biodinamica-logo.png`} alt="Biodinamica" />
+        </div>
+        <div className="hero-title"><h1>FOOT <span>MAP</span></h1><p>La mappa interattiva del dolore del piede.</p></div>
         <button className="ghost-button">? COME FUNZIONA</button>
       </header>
 

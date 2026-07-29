@@ -14,7 +14,7 @@ export function FootDiagram({ selected, onToggle }: Props) {
     <div className="foot-card" aria-label="Mappa interattiva delle aree del piede">
       <img
         className="foot-map-image"
-        src={`${assetBasePath}/foot-pain-map-real.png`}
+        src={`${assetBasePath}/foot-map-main.png`}
         alt="Piede visto da pianta e dorso con punti selezionabili per indicare il dolore"
       />
       {painAreas.map((area) => {
