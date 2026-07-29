@@ -12,7 +12,7 @@ Sito statico navigabile per Podologica, impostato come tema medico-premium orien
 - Analisi della corsa
 - Plantari su misura
 - Calzature e FEETTING
-- Foot Pain Identifier
+- Foot Map
 - Patologie e disturbi
 - Tecnologia
 - Chi siamo

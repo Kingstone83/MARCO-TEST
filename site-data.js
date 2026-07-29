@@ -1,6 +1,6 @@
 const ASSET_PHOTO = "assets/2e28ad23-d030-4593-9b35-d4e20e55f7fa.png";
 const HOME_HERO_PHOTO = "assets/home-hero-podologica.png";
-const FOOT_PAIN_HERO_PHOTO = "assets/foot-pain-hero.png";
+const FOOT_MAP_HERO_PHOTO = "assets/foot-map-hero.png";
 const FALLBACK_PHOTO = "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=82";
 const CLINIC_PHOTO = "https://images.unsplash.com/photo-1584467735871-829732e270e8?auto=format&fit=crop&w=1400&q=82";
 const ANALYSIS_PHOTO = "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1400&q=82";
@@ -13,7 +13,7 @@ const navItems = [
   ["Metodo Biodinamica", "pages/metodo-biodinamica.html"],
   ["Analisi", "pages/analisi.html"],
   ["Plantari su misura", "pages/plantari-su-misura.html"],
-  ["Foot Pain Identifier", "pages/foot-pain-identifier.html"],
+  ["Foot Map", "foot-map/"],
   ["Patologie", "pages/patologie-disturbi.html"],
   ["Tecnologia", "pages/tecnologia.html"],
   ["Chi siamo", "pages/chi-siamo.html"],
@@ -131,12 +131,12 @@ const pages = {
     bullets: ["Misura reale del piede", "Volume e forma", "Compatibilita plantare", "Uso quotidiano o sportivo"]
   },
   dolore: {
-    title: "Foot Pain Identifier",
+    title: "Foot Map",
     kicker: "Dimmi dove senti dolore",
-    image: FOOT_PAIN_HERO_PHOTO,
+    image: FOOT_MAP_HERO_PHOTO,
     summary: "Dimmi dove senti dolore e iniziamo da li.",
     intro: "Il dolore al piede puo comparire in molte zone diverse. Tallone, arco plantare, avampiede, alluce, dita o tendine d'Achille possono indicare problematiche differenti. Questa sezione ti aiuta a orientarti.",
-    cta: "Identifica il dolore"
+    cta: "Apri Foot Map"
   },
   patologie: {
     title: "Patologie e disturbi",
@@ -169,7 +169,7 @@ const pages = {
     image: CLINIC_PHOTO,
     summary: "Raccontaci dove senti dolore o quale obiettivo vuoi raggiungere.",
     intro: "Una prima valutazione Biodinamica permette di analizzare appoggio, passo e calzatura per individuare la soluzione piu adatta.",
-    bullets: ["Valutazione Biodinamica", "Foot Pain Identifier", "Prima visita tecnica"]
+    bullets: ["Valutazione Biodinamica", "Foot Map", "Prima visita tecnica"]
   }
 };
 
@@ -229,7 +229,7 @@ function footer(current) {
           <h4>Servizi</h4>
           <a href="${relative("pages/analisi.html", current)}">Analisi</a>
           <a href="${relative("pages/plantari-su-misura.html", current)}">Plantari su misura</a>
-          <a href="${relative("pages/foot-pain-identifier.html", current)}">Foot Pain Identifier</a>
+          <a href="${relative("foot-map/", current)}">Foot Map</a>
         </div>
         <div>
           <h4>Contatti</h4>
@@ -296,14 +296,14 @@ function renderHome() {
       <section class="section pain-feature">
         <div class="inner feature-panel dark-panel">
           <div class="feature-copy">
-            <span class="section-kicker">Foot Pain Identifier</span>
+            <span class="section-kicker">Foot Map</span>
             <h2>Dove senti dolore? Troviamo la causa, insieme.</h2>
-            <p>Il Foot Pain Identifier ti aiuta a orientarti tra le principali zone di dolore: tallone, arco plantare, avampiede, alluce, dita, tendine d'Achille, lato interno e lato esterno.</p>
+            <p>Foot Map ti aiuta a orientarti tra le principali zone di dolore: tallone, arco plantare, avampiede, alluce, dita, tendine d'Achille, lato interno e lato esterno.</p>
             <p>Non sostituisce una valutazione professionale, ma ti aiuta a capire da dove partire.</p>
-            <a class="cta" href="pages/foot-pain-identifier.html">Identifica il dolore ${icon.arrow}</a>
+            <a class="cta" href="foot-map/">Apri Foot Map ${icon.arrow}</a>
           </div>
           <div class="pain-card-grid">
-            ${Object.entries(painProfiles).slice(0, 8).map(([key, data]) => `<a href="pages/foot-pain-identifier.html" class="pain-zone-card"><span>${data[0]}</span>${icon.arrow}</a>`).join("")}
+            ${Object.entries(painProfiles).slice(0, 8).map(([key, data]) => `<a href="foot-map/" class="pain-zone-card"><span>${data[0]}</span>${icon.arrow}</a>`).join("")}
           </div>
         </div>
       </section>
@@ -520,7 +520,7 @@ function identitySection() {
 }
 
 function contactSection() {
-  return `<section class="section narrative"><div class="inner contact-layout"><div><span class="section-kicker">Valutazioni</span><h2>Scegli da dove iniziare.</h2><div class="contact-options">${card("Prenota una valutazione Biodinamica", "Per analizzare appoggio, passo, calzatura e soluzione piu adatta.")}${card("Foot Pain Identifier", "Per orientarti se parti da una zona precisa di dolore.")}${card("Prima visita tecnica", "Per chi vuole capire se serve analisi, plantare, FEETTING o trattamento podologico.")}</div></div><aside class="booking-card"><h3>Podologica</h3><p>Via dello Studio 12</p><p>info@podologica.it</p><p class="phone">06 354 04 78</p><a class="cta" href="tel:+39063540478">Chiama ora</a></aside></div></section>`;
+  return `<section class="section narrative"><div class="inner contact-layout"><div><span class="section-kicker">Valutazioni</span><h2>Scegli da dove iniziare.</h2><div class="contact-options">${card("Prenota una valutazione Biodinamica", "Per analizzare appoggio, passo, calzatura e soluzione piu adatta.")}${card("Foot Map", "Per orientarti se parti da una zona precisa di dolore.")}${card("Prima visita tecnica", "Per chi vuole capire se serve analisi, plantare, FEETTING o trattamento podologico.")}</div></div><aside class="booking-card"><h3>Podologica</h3><p>Via dello Studio 12</p><p>info@podologica.it</p><p class="phone">06 354 04 78</p><a class="cta" href="tel:+39063540478">Chiama ora</a></aside></div></section>`;
 }
 
 function pathologySection() {
