@@ -139,6 +139,20 @@ export function evaluateSymptoms(
     }));
   }
 
+  if (categories.has("dorso-cavo")) {
+    results.push(result({
+      title: "Dolore sul dorso del piede nel piede cavo",
+      explanation: "Nel piede cavo il dorso puo risultare piu prominente e soggetto alla pressione della calzatura. La maggiore rigidita del piede e la ridotta capacita di distribuire i carichi possono inoltre sovraccaricare i tendini estensori, le articolazioni del mesopiede e i metatarsi. Il dolore dorsale puo quindi essere legato a compressione, irritazione tendinea o sovraccarico articolare; se e persistente, molto localizzato o accompagnato da gonfiore, deve essere approfondito clinicamente.",
+      specialist: "Podologo, fisioterapista o ortopedico",
+      score: score + 1,
+      confidence: 84,
+      sourceTitle: "Wikipodia: arco alto e piede cavo",
+      sourcePath: "voci/008-arco-alto.html",
+      signals: ["Pressione della calzatura sul collo del piede", "Dolore dopo cammino prolungato, corsa o salite", "Bruciore, formicolio o gonfiore richiedono attenzione"],
+      actions: ["Allentare l'allacciatura e verificare il volume interno della scarpa", "Ridurre temporaneamente le attivita che aumentano il dolore", "Richiedere una valutazione clinica se il dolore persiste o limita l'appoggio"]
+    }));
+  }
+
   if (categories.has("dorso")) {
     results.push(result({
       title: "Possibile tendinopatia, compressione dorsale o neuroma",
