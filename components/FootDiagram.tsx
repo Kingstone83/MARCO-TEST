@@ -12,11 +12,19 @@ type Props = {
 export function FootDiagram({ selected, onToggle }: Props) {
   return (
     <div className="foot-card" aria-label="Mappa interattiva delle aree del piede">
-      <img
-        className="foot-map-image"
-        src={`${assetBasePath}/foot-map-main.png`}
-        alt="Piede visto da pianta e dorso con punti selezionabili per indicare il dolore"
-      />
+      <picture>
+        <source srcSet={`${assetBasePath}/foot-map-main.webp`} type="image/webp" />
+        <img
+          className="foot-map-image"
+          src={`${assetBasePath}/foot-map-main.png`}
+          alt="Piede visto da pianta e dorso con punti selezionabili per indicare il dolore"
+          width={1393}
+          height={1129}
+          fetchPriority="high"
+          decoding="async"
+          draggable={false}
+        />
+      </picture>
       {painAreas.map((area) => {
         const active = selected.includes(area.id);
         return (

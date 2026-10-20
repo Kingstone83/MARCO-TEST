@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { FootDiagram } from "./FootDiagram";
 import { painAreas } from "@/data/painAreas";
 import { evaluateSymptoms } from "@/lib/evaluateSymptoms";
@@ -17,13 +17,14 @@ export function AssessmentApp() {
   const [selected, setSelected] = useState<string[]>([]);
   const [intensity, setIntensity] = useState(5);
   const [duration, setDuration] = useState<PainDuration>("1to4w");
+  const helpDialog = useRef<HTMLDialogElement>(null);
 
   const selectedAreas = useMemo(() => painAreas.filter((a) => selected.includes(a.id)), [selected]);
   const results = selectedAreas.length ? evaluateSymptoms(selectedAreas, intensity, duration) : [];
   const selectedLabels = selectedAreas.map((area) => area.label).join(", ");
 
   function toggle(id: string) {
-    setSelected((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
+    setSelected((current) => current.includes(id) ? [] : [id]);
   }
 
   function resetAssessment() {
@@ -39,14 +40,16 @@ export function AssessmentApp() {
           <img className="brand-logo" src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/biodinamica-logo.png`} alt="Biodinamica" />
         </div>
         <div className="hero-title"><h1>FOOT <span>MAP</span></h1><p>La mappa interattiva del dolore del piede.</p></div>
-        <button className="ghost-button">? COME FUNZIONA</button>
+        <button className="ghost-button" type="button" aria-haspopup="dialog" onClick={() => helpDialog.current?.showModal()}>
+          <span aria-hidden="true">?</span> COME FUNZIONA
+        </button>
       </header>
 
       <section className="dashboard">
         <section className="visual-panel">
           <div className="sr-only">
             <h2>Seleziona l'area del dolore</h2>
-            <p>Clicca sui punti dove avverti dolore. Puoi selezionare più aree.</p>
+            <p>Clicca sul punto dove avverti dolore. Puoi selezionare una sola area.</p>
           </div>
           <div className="feet-grid">
             <FootDiagram selected={selected} onToggle={toggle} />
@@ -73,12 +76,12 @@ export function AssessmentApp() {
           </section>
 
           <section className={`live-diagnosis ${results.length ? "diagnosis-ready" : ""}`} aria-live="polite">
-            <div className="diagnosis-kicker">{results.length ? "DIAGNOSI ORIENTATIVA LIVE" : "CLICCA UN PUNTO DEL PIEDE"}</div>
-            <h2>{results.length ? "Possibili cause da approfondire" : "La diagnosi appare qui"}</h2>
+            <div className="diagnosis-kicker">{results.length ? "ANALISI ORIENTATIVA" : "CLICCA UN PUNTO DEL PIEDE"}</div>
+            <h2>{results.length ? "Possibili cause da approfondire" : "L'analisi appare qui"}</h2>
             <p className="selection-summary">
               {results.length
-                ? `Aree selezionate: ${selectedLabels}. Intensita ${intensity}/10, durata: ${durations.find((item) => item.value === duration)?.label}.`
-                : "Seleziona una o piu aree dolorose sulla mappa: il pannello si aggiorna subito senza premere altri pulsanti."}
+                ? `Area selezionata: ${selectedLabels}. Intensita ${intensity}/10, durata: ${durations.find((item) => item.value === duration)?.label}.`
+                : "Seleziona un punto doloroso sulla mappa: il pannello si aggiorna subito senza premere altri pulsanti."}
             </p>
 
             {results.length > 0 && (
@@ -111,7 +114,7 @@ export function AssessmentApp() {
       </section>
 
       <section className="bottom-bar">
-        <div><strong>NON È UNA DIAGNOSI MEDICA.</strong><p>È un orientamento informativo basato sui punti selezionati e su fonti podologiche. La conferma richiede una visita specialistica.</p></div>
+        <div><strong>NON È UNA DIAGNOSI MEDICA.</strong><p>È un orientamento informativo basato sul punto selezionato e su fonti podologiche. La conferma richiede una visita specialistica.</p></div>
         <div className="bottom-actions">
           <button className="reset-button" type="button" onClick={resetAssessment} disabled={!selected.length && intensity === 5 && duration === "1to4w"}>
             RESET
@@ -119,6 +122,32 @@ export function AssessmentApp() {
           <div className="source-pill">Fonte: Wikipodia + regole locali</div>
         </div>
       </section>
+
+      <dialog
+        ref={helpDialog}
+        className="help-dialog"
+        aria-labelledby="help-title"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) helpDialog.current?.close();
+        }}
+      >
+        <div className="help-dialog-content">
+          <header>
+            <div>
+              <span>FOOT MAP</span>
+              <h2 id="help-title">Come funziona</h2>
+            </div>
+            <button type="button" className="dialog-close" onClick={() => helpDialog.current?.close()} aria-label="Chiudi la guida" title="Chiudi">×</button>
+          </header>
+          <ol>
+            <li><strong>Seleziona il punto</strong><span>Tocca l'area del piede dove senti dolore. Un nuovo punto sostituisce quello precedente.</span></li>
+            <li><strong>Indica intensità e durata</strong><span>Regola il valore da 0 a 10 e scegli da quanto tempo è presente.</span></li>
+            <li><strong>Consulta l'analisi</strong><span>Leggi le possibili cause, gli indicatori e il professionista consigliato.</span></li>
+          </ol>
+          <p>Foot Map offre un orientamento informativo e non sostituisce una diagnosi medica.</p>
+          <button type="button" className="dialog-primary" onClick={() => helpDialog.current?.close()}>INIZIA</button>
+        </div>
+      </dialog>
     </main>
   );
 }
